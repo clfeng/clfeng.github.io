@@ -98,16 +98,13 @@
 <p>浏览器首先会去查自身的缓存中是否有该url地址所对应的iIP地址，如果找不到就会到计算机的DNS缓存中去查找，还没有，便会到主机所连网络的高速缓存中去寻找，如果还是没找到。这个时候便会通过递归查询的方式到本地域名服务器去查询，如果本地域名服务器中有改url地址对应的IP地址便将其返回给主机，如果没有的话，就会采用迭代查询的方式代替主机去询问根域名服务器，如果根域名服务器也不知道，它就会告诉本地域名服务器，接下来该去那台顶级域名服务器查询，如果该顶级域名服务器也不知道，就会告诉本地域名服务器接下来改去哪台权限域名服务器查询，于是费了九牛二虎之力，本地域名服务器终于拿到了该url地址所对应的IP地址，然后它会自己先缓存一份，免得下次又得跑一趟，然后再告诉本地主机你想查询的url地址对应的ip地址是220.235.152.52,我替你问到了。</p>
 <p>浏览器在得到了相应的IP地址了之后，浏览器便要开启它的发送报文之旅了，整个发送的过程从上到下会依次经过互联网的五层，应用层（DNS，http协议），传输层(TCP,UDP协议)，网络层(IP协议)，数据链路层(以太网协议，MAC地址)，物理层(物理设备，双绞线等)，每经过一层都会加入在层相应协议的head，到物理层之后会通过信号进行过传播，将数据传送到相应的服务器所在，有从下到上依次经过物联网的五层，在没经过一层都会对数据报进行解析，去掉相应的head。最后达到服务器由服务器相应的程序对其进行处理。</p>
 <p>服务器程序在处理完浏览器发来的请求以及数据之后，便会返回相应的响应报文，以及将请求的资源发送给浏览器器，浏览器在接受到相应的资源后便会开始解析，常见的便是HTML,CSS,JavaScript文件。</p>
-<p>#####页面渲染过程：<br><img src="http://upload-images.jianshu.io/upload_images/5834936-0e9b73b482394693.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="html_render_icon.png"></p>
-<p>首先是HTML文件的解析。浏览器会从上到下对HTML文件进行解析，在解析的过程中如果遇到link标签，img标签，script标签都会发送http请求去获取相应的文件资源，然后一步步的一直解析都结束。</p>
-<p>在进行HTML解析的时候，浏览器会将对应的HTML标签解析成为一棵DOM tree，同时也会对<style>中样式和外部样式进行解析得到相应的Style Rule，然后通过DOM tree和Style Rule构建出一个Render Tree,紧接着进行布局计算(主要用于计算每个元素的位置，以及大小等等)，最后便是将页面呈现出来展现给用户。<br>另外需要着重指出的是，parse HTML =&gt; reder tree construction =&gt;layout of the reder tree =&gt; painting the reder tree是一个渐进的过程。为了达到更好的用户体验，呈现引擎会力求尽快将内容显示在屏幕上，它不必等到整个HTML文档解析完毕之后，就会开始构建呈现树和设置布局。在不断接受和处理来自网络的其余内容的同时，呈现引擎会将部分内解析并显示出来。<br>在上面的讲述中，为了方便讲解，并没有涉及的js对这个页面的解析渲染的影响。现在已我们加入这一部分。首先是js源文件的解析，解析的过程需要经过词法分析(Lexical Analysis)以及语法分析(Syntax Analysis)，词法说明语言所具有的词汇以及词汇的含义(就像我们所熟悉的单词一样)，而语法则是关于如何组织词汇的一些规则和定义，规定了什么样的词汇按照是什么样的规则表达了什么样的含义，而词法分析器，以及语法分析器则是根据最初的定义的规则对字符数据进行解析，从而理解数据所传达的含义。js源代码在进过词法分析，语法分析之后，边会构建成一颗解析树，解析树会进一步进行转换成为机器码。机器码对页面的影响主要有repaint 和reflow两种方式。可能会影响到DOM Tree，也可能是影响页面的Style Rules进而影响到Reder Tree的构建，当然和可能是直接影响到Reder Tree的布局计算。</p>
-<p>####关于repaint和reflow</p>
-<p>repaint主要是由于元素的外观改变所触发的浏览器行为，像改变background，color，visibility等仅仅是影响到元素的外观而而不影响大小的属性。针对这些改变，浏览器会根据新的属性值进行重新绘制，并展现新的外观。<br>reflow主要是由于元素的大小，或者是位置等的改变(这些改变往往也会影响到周边元素的位置)从而使得浏览器需要对reder tree进行重新渲染，并带来相应的元素位置，及元素大小的重新计算。</p>
+<h5 id="页面渲染过程："><a href="#页面渲染过程：" class="headerlink" title="页面渲染过程："></a>页面渲染过程：</h5><p><img src="http://upload-images.jianshu.io/upload_images/5834936-0e9b73b482394693.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="html_render_icon.png"></p>
+<p>首先是HTML文件的解析。浏览器会从上到下对HTML文件进行解析，在解析的过程中如果遇到link标签，img标签，script标签都会发送http请求去获取相应的文件资源，然后一步步的一直解析都<code>&lt;/body&gt;</code>结束。</p>
+<p>在进行HTML解析的时候，浏览器会将对应的HTML标签解析成为一棵DOM tree，同时也会对<code>&lt;style&gt;</code>中样式和外部样式进行解析得到相应的Style Rule，然后通过DOM tree和Style Rule构建出一个Render Tree,紧接着进行布局计算(主要用于计算每个元素的位置，以及大小等等)，最后便是将页面呈现出来展现给用户。<br>另外需要着重指出的是，parse HTML =&gt; reder tree construction =&gt;layout of the reder tree =&gt; painting the reder tree是一个渐进的过程。为了达到更好的用户体验，呈现引擎会力求尽快将内容显示在屏幕上，它不必等到整个HTML文档解析完毕之后，就会开始构建呈现树和设置布局。在不断接受和处理来自网络的其余内容的同时，呈现引擎会将部分内解析并显示出来。<br>在上面的讲述中，为了方便讲解，并没有涉及的js对这个页面的解析渲染的影响。现在已我们加入这一部分。首先是js源文件的解析，解析的过程需要经过词法分析(Lexical Analysis)以及语法分析(Syntax Analysis)，词法说明语言所具有的词汇以及词汇的含义(就像我们所熟悉的单词一样)，而语法则是关于如何组织词汇的一些规则和定义，规定了什么样的词汇按照是什么样的规则表达了什么样的含义，而词法分析器，以及语法分析器则是根据最初的定义的规则对字符数据进行解析，从而理解数据所传达的含义。js源代码在进过词法分析，语法分析之后，边会构建成一颗解析树，解析树会进一步进行转换成为机器码。机器码对页面的影响主要有repaint 和reflow两种方式。可能会影响到DOM Tree，也可能是影响页面的Style Rules进而影响到Reder Tree的构建，当然和可能是直接影响到Reder Tree的布局计算。</p>
+<h4 id="关于repaint和reflow"><a href="#关于repaint和reflow" class="headerlink" title="关于repaint和reflow"></a>关于repaint和reflow</h4><p>repaint主要是由于元素的外观改变所触发的浏览器行为，像改变background，color，visibility等仅仅是影响到元素的外观而而不影响大小的属性。针对这些改变，浏览器会根据新的属性值进行重新绘制，并展现新的外观。<br>reflow主要是由于元素的大小，或者是位置等的改变(这些改变往往也会影响到周边元素的位置)从而使得浏览器需要对reder tree进行重新渲染，并带来相应的元素位置，及元素大小的重新计算。</p>
 <p>由此可知，reflow对浏览器性能的消耗往往比repaint更大，因此减少reflow也是性能优化的一个重要手段，例如需要在文档中插入多个dom元素的时候，通过将多个元素先插入DocumentFragment 中，用innerHTML一次性插入多个dom元素，都是减少reflow提升浏览器性能的方法。</p>
-<p>####拓展–关于外部css文件，以及js文件的加载以及HTML文档解析的阻塞问题</p>
-<p>前面我们讲到浏览器在解析HTML文档的时候，如果遇到link标签，script标签都会发送http请求去获取相应的资源，那么在发送请求到服务器返回相应资源的这段时间内，浏览器是会在哪里等待还是说会继续解析HTML呢？<br>外部js文件的架在你户阻塞HTML的解析。而css文件的加载并不会阻塞HTML的解析，当然是在css文件后没有紧跟script的情况下，如果跟了js的话就会进行阻塞，但其实是js起到的阻塞作用。<br>对于js的阻塞，想大家都不会觉得陌生，毕竟刚入门的时候常常会有将script放在头部，然后再js代码中写了获取某个元素的并进行相应操作的逻辑，然后出现了各种报错的情况，而且是屡试不爽。所以这里就不在多说了。<br>对于外部css文件的加载，我给出的结论是不会阻塞HTML的解析。我曾经做过的一个测试，测试的方式是这样的，材料为我曾经做过的一份静态网页，然后分别将link标签放在head中，和紧靠</body>，然后通过chrome的performce去看html解析和和布局渲染等的出现的时间来进行分析，以下是一些截图</p>
-<p>######Link放在最后</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/5834936-94098f9d536ef9be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h4 id="拓展–关于外部css文件，以及js文件的加载以及HTML文档解析的阻塞问题"><a href="#拓展–关于外部css文件，以及js文件的加载以及HTML文档解析的阻塞问题" class="headerlink" title="拓展–关于外部css文件，以及js文件的加载以及HTML文档解析的阻塞问题"></a>拓展–关于外部css文件，以及js文件的加载以及HTML文档解析的阻塞问题</h4><p>前面我们讲到浏览器在解析HTML文档的时候，如果遇到link标签，script标签都会发送http请求去获取相应的资源，那么在发送请求到服务器返回相应资源的这段时间内，浏览器是会在哪里等待还是说会继续解析HTML呢？<br>外部js文件的架在你户阻塞HTML的解析。而css文件的加载并不会阻塞HTML的解析，当然是在css文件后没有紧跟script的情况下，如果跟了js的话就会进行阻塞，但其实是js起到的阻塞作用。<br>对于js的阻塞，想大家都不会觉得陌生，毕竟刚入门的时候常常会有将script放在头部，然后再js代码中写了获取某个元素的并进行相应操作的逻辑，然后出现了各种报错的情况，而且是屡试不爽。所以这里就不在多说了。<br>对于外部css文件的加载，我给出的结论是不会阻塞HTML的解析。我曾经做过的一个测试，测试的方式是这样的，材料为我曾经做过的一份静态网页，然后分别将link标签放在head中，和紧靠<code>&lt;/body&gt;</code>，然后通过chrome的performce去看html解析和和布局渲染等的出现的时间来进行分析，以下是一些截图</p>
+<h6 id="Link放在最后"><a href="#Link放在最后" class="headerlink" title="Link放在最后"></a>Link放在最后</h6><p><img src="http://upload-images.jianshu.io/upload_images/5834936-94098f9d536ef9be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-25b63bdaadd540e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-3628a93110449d71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-cd235bbf8c1a9068.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
@@ -115,8 +112,7 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-f10a77963aaf7e51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-37d5c180dd974f29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><em>总结</em>：将link放在最后，只在120.8ms的时候进行过一次parse HTML后面出现的parse HTML并没有时间值，parse stylesheet则出现再parse HTML之后，recalculate style之前，之后的全是recalculate，layout，paint</p>
-<p>######Link放前面</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/5834936-8a369cc84a01dea5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h6 id="Link放前面"><a href="#Link放前面" class="headerlink" title="Link放前面"></a>Link放前面</h6><p><img src="http://upload-images.jianshu.io/upload_images/5834936-8a369cc84a01dea5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-71aef4cba37af5fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-4b1982e8f61b3705.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-18adc6089521d42a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
@@ -125,11 +121,11 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-935f2fbcef14358a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5834936-337961efb885e2c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><em>结论</em>：将link放在前面，发现在143ms的时候后parseHTML，而之后虽然后parse HTML但是却没有时间值（也就是说这个应该不算是在parse HTML）,parse style 在parse HTML之后，说明link的css并不会阻塞parse HTML</p>
 <p>结————————————————————————————</p>
-</style></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/clfeng/2017/05/23/从输入url到页面展现-都发生了什么/" data-id="cj30dvbjy00016gn4ixk3zj56" class="article-share-link">Share</a>
+      <a data-url="https://github.com/clfeng/2017/05/23/从输入url到页面展现-都发生了什么/" data-id="cj30e24qd0000j8n43u41khl7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,7 +218,7 @@ The message-body (if any)of an HTTP message is used to carry the entity-body ass
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/clfeng/2017/05/14/http知识小结/" data-id="cj30dvbjn00006gn4b7yvsfh2" class="article-share-link">Share</a>
+      <a data-url="https://github.com/clfeng/2017/05/14/http知识小结/" data-id="cj30e24ql0001j8n4sd6372kk" class="article-share-link">Share</a>
       
       
     </footer>
