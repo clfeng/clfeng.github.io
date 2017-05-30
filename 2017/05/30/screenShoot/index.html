@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>&#39;screenShoot&#39; | Clfeng&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="之前曾经看过一份完善过一份截图插件的代码，整个逻辑感觉有点复杂。该份代码的特点是：变量太多(而且是别人定义的变量)，组织的逻辑理解起来有点困难。 最近，又想到了这份东西，所以便萌生了自己尝试这独立实现的念头，也借此回顾下，简单动画，拖拽，缩放功能的实现，以及位置关系的一些原生js的一些知识点。 开始写前，先进行下知识点的回顾吧。 位置关系    方法 描述     Element.clientTo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;screenShoot&#39;">
+<meta property="og:url" content="https://github.com/clfeng/2017/05/30/screenShoot/index.html">
+<meta property="og:site_name" content="Clfeng&#39;s Blog">
+<meta property="og:description" content="之前曾经看过一份完善过一份截图插件的代码，整个逻辑感觉有点复杂。该份代码的特点是：变量太多(而且是别人定义的变量)，组织的逻辑理解起来有点困难。 最近，又想到了这份东西，所以便萌生了自己尝试这独立实现的念头，也借此回顾下，简单动画，拖拽，缩放功能的实现，以及位置关系的一些原生js的一些知识点。 开始写前，先进行下知识点的回顾吧。 位置关系    方法 描述     Element.clientTo">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5834936-2d9a1c1e7adb0a4f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5834936-04f376fb8a5a7aaf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-30T03:02:48.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;screenShoot&#39;">
+<meta name="twitter:description" content="之前曾经看过一份完善过一份截图插件的代码，整个逻辑感觉有点复杂。该份代码的特点是：变量太多(而且是别人定义的变量)，组织的逻辑理解起来有点困难。 最近，又想到了这份东西，所以便萌生了自己尝试这独立实现的念头，也借此回顾下，简单动画，拖拽，缩放功能的实现，以及位置关系的一些原生js的一些知识点。 开始写前，先进行下知识点的回顾吧。 位置关系    方法 描述     Element.clientTo">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5834936-2d9a1c1e7adb0a4f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Clfeng&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Clfeng&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/clfeng"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-screenShoot" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/30/screenShoot/" class="article-date">
+  <time datetime="2017-05-30T03:02:01.000Z" itemprop="datePublished">2017-05-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &#39;screenShoot&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前曾经看过一份完善过一份截图插件的代码，整个逻辑感觉有点复杂。该份代码的特点是：变量太多(而且是别人定义的变量)，组织的逻辑理解起来有点困难。</p>
+<p>最近，又想到了这份东西，所以便萌生了自己尝试这独立实现的念头，也借此回顾下，简单动画，拖拽，缩放功能的实现，以及位置关系的一些原生js的一些知识点。</p>
+<p>开始写前，先进行下知识点的回顾吧。</p>
+<p>位置关系</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Element.clientTop</td>
+<td>返回element上边框的宽度值</td>
+</tr>
+<tr>
+<td>Element.clientLeft</td>
+<td>返回element左边框的宽度值</td>
+</tr>
+<tr>
+<td>Element.offsetParent</td>
+<td>返回element第一设置了position（且value!=static）的父元素，如果一直找不到，最后会返回root element，在标准模式下为html在怪异模式下为body</td>
+</tr>
+<tr>
+<td>Element.offsetTop</td>
+<td>返回element上边框到element.offsetParent上边框的距离</td>
+</tr>
+<tr>
+<td>Element.offsetLeft</td>
+<td>返回element左边框到element.offsetParent左边框的距离</td>
+</tr>
+<tr>
+<td>Element.offsetWidth</td>
+<td>返回element的宽度,include :content,padding,border</td>
+</tr>
+<tr>
+<td>Element.offsetHeight</td>
+<td>返回element的高度,include :content,padding,border</td>
+</tr>
+<tr>
+<td>event.clientX</td>
+<td>返回鼠标的事件发生是鼠标所在的X轴位置</td>
+</tr>
+<tr>
+<td>event.clientY</td>
+<td>返回鼠标的事件发生是鼠标所在的Y轴位置</td>
+</tr>
+</tbody>
+</table>
+<p>//滚轮事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">addEvent(ele,&apos;mousewheel&apos;,function (event)&#123;</div><div class="line">  event = getEvent(event);</div><div class="line">  if (event.wheelDelta&gt;0) &#123;</div><div class="line">  //向上滚动</div><div class="line">  //滚动一周为120</div><div class="line">  &#125;</div><div class="line">  if (event.wheelDelta&lt;0) &#123;</div><div class="line">  //向下滚动</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//firefox</div><div class="line">addEvent(ele,&apos;DOMMouseScroll&apos;,function (event)&#123;</div><div class="line">  if (event.detail&gt;0) &#123;</div><div class="line">  //向下滚动</div><div class="line">  //滚动一周为3</div><div class="line">  &#125;</div><div class="line">  if(event.detail&lt;0)&#123;</div><div class="line">  //向上滚动</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">`</div></pre></td></tr></table></figure></p>
+<p>关于鼠标事件的全局捕获<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"> // 对鼠标事件进行捕获</div><div class="line">  if (this.setCapture) &#123;</div><div class="line">    this.setCapture();</div><div class="line">  &#125; else if(window.captureEvents)&#123;</div><div class="line">    window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);</div><div class="line">  &#125;</div><div class="line">    // 释放捕获事件</div><div class="line">    if (this.releaseCapture) &#123;</div><div class="line">      this.releaseCapture()</div><div class="line">    &#125;   else if(window.releaseEvents)&#123;</div><div class="line">      // 但不知为何在chrome下Event.MOUSEUP= undefined,故不起作用</div><div class="line">      window.releaseEvents(Event.MOUSEMOVE|Event.MOUSEUP);</div><div class="line">    &#125;</div><div class="line">//采用的解决方案</div><div class="line">  if (this.setCapture) &#123;</div><div class="line">    this.setCapture();</div><div class="line">  &#125;</div><div class="line">  if(!this.setCapture)&#123;</div><div class="line">    addEvent(document,&quot;mouseup&quot;,mouseup);</div><div class="line">  &#125;else&#123;</div><div class="line">    // 为了能够捕获在contentLeft外发生的mouseup事件，直接给document添加mouseup</div><div class="line">    addEvent(contentLeft,&quot;mouseup&quot;,mouseup);</div><div class="line">  &#125;</div><div class="line">    // 释放捕获事件</div><div class="line">    if (this.releaseCapture) &#123;</div><div class="line">      this.releaseCapture()</div><div class="line">      removeEvent(contentLeft,&quot;mouseup&quot;,mouseup);</div><div class="line">    &#125;else&#123;</div><div class="line">      removeEvent(document,&apos;mouseup&apos;,mouseup);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>最后是设计图</p>
+<p>可能字丑了点（尴尬）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-2d9a1c1e7adb0a4f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="screenshoot.jpg"></p>
+<p>完成后</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-04f376fb8a5a7aaf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="finished.jpg"></p>
+<p>然后。。。。<br>其实我并不打算讲代码，毕竟在写代码的时候该有的注释都写了，所以大家如果有兴趣的话，可以看下我放在github下的<a href="https://github.com/clfeng/screenShoot">源码</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/clfeng/2017/05/30/screenShoot/" data-id="cj3aza10m00003gn4efuz1poo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/05/23/从输入url到页面展现-都发生了什么/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">从输入url到页面展现,都发生了什么?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/30/screenShoot/">&#39;screenShoot&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/23/从输入url到页面展现-都发生了什么/">从输入url到页面展现,都发生了什么?</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/14/http知识小结/">http知识小结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 陈梁丰<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
