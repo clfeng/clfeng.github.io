@@ -61,6 +61,225 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-flex学习总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/flex学习总结/" class="article-date">
+  <time datetime="2017-06-09T03:52:11.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/flex学习总结/">flex学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对flexbox的学习总结，<a href="https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html" target="_blank" rel="external">学习资源</a></p>
+<p>文章是对自己所学知识点的一些小结，主要是为了以后遗忘时可以回顾，若想学习，前面的学习资源的教程相当不错</p>
+<ol>
+<li>when we set display:flex for the parent container,<br>the child element will layout just like they have set<br>the prototy of float<br>HTML:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  &lt;ul&gt; </div><div class="line">   &lt;li&gt;1 Branding&lt;/li&gt; </div><div class="line">    &lt;li&gt;2 Home&lt;/li&gt; </div><div class="line">    &lt;li&gt;3 Services&lt;/li&gt; </div><div class="line">    &lt;li&gt;4 About&lt;/li&gt; </div><div class="line">    &lt;li&gt;5 Contact&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div><div class="line">`</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-2f5678019ceb5b71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ol>
+<li>the property of flex container</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>illustration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flex-drection</td>
+<td>控制flex items的排列方向，值:row &amp;clomn &amp;row-reverse &amp; clomn-reverse</td>
+</tr>
+<tr>
+<td>flex-wrap</td>
+<td>控制当flex container无法容下flex item时是否换行，值：wrap&amp;nowrap&amp;wrap-reverse</td>
+</tr>
+<tr>
+<td>flex-flow</td>
+<td>flex-direction和flex-wrap属性的缩写</td>
+</tr>
+<tr>
+<td>justify-content</td>
+<td>如同text-align控制，container中的items的排列方式，就像文字排版的首部对其，尾部对齐一般,控制items在main-axis上的排列方式值：flex-start &amp; flex-end &amp;center &amp; space-between &amp; space-around</td>
+</tr>
+<tr>
+<td>align-items</td>
+<td>控制cross-axis方向上的的首个item的位置，从而影响整体布局，值：flex-start &amp; flex-end &amp;  center&amp;space-between &amp; space-around</td>
+</tr>
+<tr>
+<td>align-content</td>
+<td>控制cross-axis方向上多个items的布局，与justify-content类似，值：flex-start &amp; flex-end &amp; center &amp; stretch &amp; baseline</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//test flex-direction</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-direction:column;</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//test flex-wrap</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-direction:column;</div><div class="line"> flex-wrap: wrap;</div><div class="line">//wrap 当container无法容下items是不会换行，浏览器会出现滚动条</div><div class="line">//nowrap 当container无法容下items时，自动换行，item依旧在container包裹的内部</div><div class="line">//wrap-reverse 在这设置了wrap的效果下将上下颠倒,reverse使得main-axis的方向从下到上</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//test justify-content</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> justify-content:flex-start;</div><div class="line">//flex-start,从main-axis的左侧排列对齐</div><div class="line">//flex-end。从main-axis的右侧排列对齐</div><div class="line">//center.居中对齐</div><div class="line">//space-between，item之间的距离大小大小相同</div><div class="line">//sapce-around。每个item占据的空间相同，空间=元素所占空间+多出的空白空间的分配</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// test align-items</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> align-items:flex-start;</div><div class="line">//flex-start,从cross-axis的左侧排列对齐</div><div class="line">//flex-end。从cross-axis的右侧排列对齐</div><div class="line">//center.cross-axis轴居中对齐</div><div class="line">//stretch，cross-axis轴,默认值，使得flex items的高度与container的高度相同</div><div class="line">//baseline。cross-axis轴，使得flex item按器基线对齐</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// test align-content</div><div class="line"></div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> height:500px;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-wrap:wrap;</div><div class="line"> align-content:flex-start;</div><div class="line"> //与前面的justify-content显示，值也是相同的，达到的效果也是相同的，</div><div class="line"> //需要理解的区别是，justify-content控制main-axis上的多个item，仅仅看一行</div><div class="line"> //align-content控制的是一列上的多个item,仅仅从一列上看，会发现其与justify-content几乎相同</div><div class="line">//相比align-items，align-items其控制的是cross-axis上第一个item的位置，跟多的是针对首个item，</div><div class="line">//而align-content更多针对的是多个item，就如同justify-content一样</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> // height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line"> height:100px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>//3.flex item property</p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>illustration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>order</td>
+<td>当item设置了order之后，会根据order值的大小进行排列，如两个元素的order值大小相同，则元素在html中排在前的会依旧排在前面，item的某人order值为0</td>
+</tr>
+<tr>
+<td>flex-grow</td>
+<td>当container有多余空间时,如flex-grow的值为正值则item会填满多余的空间，当多个item都设置了flex-grow时，会根据比例将多余的空间分配给item</td>
+</tr>
+<tr>
+<td>flex-shrink</td>
+<td>当container的空间不足时，会缩小item的大小，多个item都设置值时，根据比例缩小。当值为0时，item则变成固定宽度，默认值为1</td>
+</tr>
+<tr>
+<td>flex-basis</td>
+<td>item的基本宽度，默认为auto</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//test order</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> height:500px;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-wrap:wrap;</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line"> height:100px;</div><div class="line">&#125; </div><div class="line"></div><div class="line">li:nth-child(1)&#123;</div><div class="line"> order:1;</div><div class="line">&#125;</div><div class="line">li:nth-child(2)&#123;</div><div class="line"> order:1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>//align-self，该属性的是是针对目标item进行设定的，不会影响到其他的item</p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>illustration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto</td>
+<td>继承container的的align-items属性</td>
+</tr>
+<tr>
+<td>flex-start</td>
+<td>开始对齐</td>
+</tr>
+<tr>
+<td>flex-end</td>
+<td>结尾对齐</td>
+</tr>
+<tr>
+<td>center</td>
+<td>居中</td>
+</tr>
+<tr>
+<td>baseline</td>
+<td>基线</td>
+</tr>
+<tr>
+<td>stretch</td>
+<td>延展，会布满整个container</td>
+</tr>
+</tbody>
+</table>
+<p>注意：但给某个item设置margin:auto的时候，<br>该项目会占据所有的多余空间,并将多余空间平均分配到该item的两侧，<br>仅仅设置margin-left则将多余的空间都分配给该item的左侧，margin-right相同<br>另外在设置了margin:auto之后。container的justify-content将不起作用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/clfeng/2017/06/09/flex学习总结/" data-id="cj3pbi0ih0001qwn48brkt0av" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css定位总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/css定位总结/" class="article-date">
+  <time datetime="2017-06-09T03:49:28.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/css定位总结/">css定位总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CSS的position主要有以下几个属性：static,relative,absolute,fixed,CSS3又增加了center | page | sticky，三个属性。对于css3大多数浏览器也都还不支持，也没怎么用到就不说了。至于position的了解，个人觉得首先应该先了解一下什么是块级元素，内联元素，以及内联块元素，然后再开始了解position属性在页面布局中的应用，以及影响。</p>
+<h4 id="三种元素类型的特点："><a href="#三种元素类型的特点：" class="headerlink" title="三种元素类型的特点："></a>三种元素类型的特点：</h4><ol>
+<li>块级元素：在页面中独占一行，可以设置元素的高度，宽度</li>
+<li>内联元素：不独占一行，多个内联元素可以在同一行中，直到这一行的的宽度无法继续容下内联元素位置。不能设置元素的宽度，高度。</li>
+<li>内联块：介于以上两者之间，在内联元素的特性上改变了可以设置元素的快读与高度。</li>
+</ol>
+<h4 id="Position属性："><a href="#Position属性：" class="headerlink" title="Position属性："></a>Position属性：</h4><ol>
+<li>Static：默认属性，按标准文档流布局，（标准文档流布局方式，从上到下，从左到右，结合元素的特性，块级元素？内联元素？等一行行的从上到下渐渐占位，每行之内又是从左到右逐渐占位）</li>
+<li>Relative：设置该属性的元素，依旧占据着其原本在标准文档流中的位置，但可以通过top,left等属性进行位置的偏移,偏移的位置是相对于元素原本在标准文档流中所占的位置而言</li>
+<li>Absolute:设置该属性的元素脱离了标准文档流，即在标准文档流中不占位，其位置是相对于其第一个设置了position属性的祖先而言（static这个默认属性除外，即设置为static属性也视为没有设置），同时需要注意的是，如果设置了absolute属性的元素，没有设置top，left等属性，此时的元素虽然脱离了文档流但是其位置却是在其父元素的左上角，而不是在设置了position属性的祖先元素的左上角，当时有top，left等属性的时候，变成了先对与第一个设置了position属性的祖先元素的的先对位置，可以自己稍微用html文档演示一下：以下有个截图</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-093df9120bd3e5d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-2bdc15808b577c7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">  &lt;title&gt;test&lt;/title&gt;</div><div class="line">  &lt;style type=&quot;text/css&quot;&gt;</div><div class="line">  .box1&#123;</div><div class="line">    height: 500px;</div><div class="line">    width: 500px;</div><div class="line">    background-color: #fff;</div><div class="line">    border: solid 1px #ccc;</div><div class="line">    position: relative;</div><div class="line">  &#125;</div><div class="line">  .box2&#123;</div><div class="line">    height: 200px;</div><div class="line">    width: 200px;</div><div class="line">    margin-top: 50px;</div><div class="line">    margin-left: 50px;</div><div class="line">    background-color: blue; </div><div class="line"></div><div class="line">  &#125;</div><div class="line">  .box3&#123;  </div><div class="line">    height: 100px;  </div><div class="line">    width: 100px; </div><div class="line">    background-color: #ccc;</div><div class="line">    position: absolute;</div><div class="line">    top: 0;</div><div class="line">  &#125;</div><div class="line">  .box4&#123;</div><div class="line">    height: 100px;  </div><div class="line">    width: 100px; </div><div class="line">    background-color: yellow;</div><div class="line">    /*position: absolute;*/</div><div class="line">    /*top: 0;*/</div><div class="line">    /*float: right;*/</div><div class="line">  &#125;</div><div class="line">  &lt;/style&gt;</div><div class="line"></div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;div class=&quot;box1&quot;&gt;</div><div class="line">    &lt;div class=&quot;box2&quot;&gt;</div><div class="line">      &lt;div class=&quot;box3&quot;&gt;&lt;/div&gt;</div><div class="line">      &lt;div class=&quot;box4&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li>Fixed：Fixed属性跟absolute属性的性质基本是一样的，不同点再于fixed属性的位置是想对于window窗口而言的而不是相对于其设置了position属性的父元素而言。常见的用法是用来固定导航以及页脚。</li>
+</ol>
+<h3 id="当position转角遇到display、margin-collapse、overflow、float这些特性时？"><a href="#当position转角遇到display、margin-collapse、overflow、float这些特性时？" class="headerlink" title="当position转角遇到display、margin collapse、overflow、float这些特性时？"></a>当position转角遇到display、margin collapse、overflow、float这些特性时？</h3><ul>
+<li>如果元素的display为none,那么元素不被渲染,position,float不起作用；</li>
+<li>如果元素拥有position:absolute;或者position:fixed;属性那么元素将为绝对定位,float不起作用</li>
+<li>如果元素float属性不是none,元素会脱离文档流,根据float属性值来显示.</li>
+<li>有浮动,绝对定位,inline-block属性的元素,margin不会和垂直方向上的其他元素margin折叠.</li>
+</ul>
+<h3 id="附加："><a href="#附加：" class="headerlink" title="附加："></a>附加：</h3><ul>
+<li>设置了float的元素会表现出inline-block元素的特性</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-db390187599ccb11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-87b5f2dc6d46de26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>当float和position:absolute被同时设置时，后设置的会在更上层</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-8795206147f3fc9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FastStoneEditor1.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-caebea24a061c05e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="FastStoneEditor1.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/clfeng/2017/06/09/css定位总结/" data-id="cj3pbi0ih0000qwn4n1ylzam0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-screenShoot" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/30/screenShoot/" class="article-date">
@@ -145,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/clfeng/2017/05/30/screenShoot/" data-id="cj3aza10m00003gn4efuz1poo" class="article-share-link">Share</a>
+      <a data-url="https://github.com/clfeng/2017/05/30/screenShoot/" data-id="cj3pbi0iw0002qwn4l7ckkii6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -221,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/clfeng/2017/05/23/从输入url到页面展现-都发生了什么/" data-id="cj3aza11800013gn4sos9auki" class="article-share-link">Share</a>
+      <a data-url="https://github.com/clfeng/2017/05/23/从输入url到页面展现-都发生了什么/" data-id="cj3pbi0iw0004qwn4ub8b95bc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +533,7 @@ The message-body (if any)of an HTTP message is used to carry the entity-body ass
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://github.com/clfeng/2017/05/14/http知识小结/" data-id="cj3aza11a00023gn47xlesc5m" class="article-share-link">Share</a>
+      <a data-url="https://github.com/clfeng/2017/05/14/http知识小结/" data-id="cj3pbi0iw0003qwn4myw4iwrh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -341,7 +560,7 @@ The message-body (if any)of an HTTP message is used to carry the entity-body ass
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
     </div>
   </div>
 
@@ -352,6 +571,14 @@ The message-body (if any)of an HTTP message is used to carry the entity-body ass
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/09/flex学习总结/">flex学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/09/css定位总结/">css定位总结</a>
+          </li>
         
           <li>
             <a href="/2017/05/30/screenShoot/">&#39;screenShoot&#39;</a>

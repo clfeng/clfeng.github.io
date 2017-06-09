@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>flex学习总结 | Clfeng&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对flexbox的学习总结，学习资源 文章是对自己所学知识点的一些小结，主要是为了以后遗忘时可以回顾，若想学习，前面的学习资源的教程相当不错  when we set display:flex for the parent container,the child element will layout just like they have setthe prototy of floatHTML:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flex学习总结">
+<meta property="og:url" content="https://github.com/clfeng/2017/06/09/flex学习总结/index.html">
+<meta property="og:site_name" content="Clfeng&#39;s Blog">
+<meta property="og:description" content="对flexbox的学习总结，学习资源 文章是对自己所学知识点的一些小结，主要是为了以后遗忘时可以回顾，若想学习，前面的学习资源的教程相当不错  when we set display:flex for the parent container,the child element will layout just like they have setthe prototy of floatHTML:">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5834936-2f5678019ceb5b71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-06-09T03:53:31.334Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="flex学习总结">
+<meta name="twitter:description" content="对flexbox的学习总结，学习资源 文章是对自己所学知识点的一些小结，主要是为了以后遗忘时可以回顾，若想学习，前面的学习资源的教程相当不错  when we set display:flex for the parent container,the child element will layout just like they have setthe prototy of floatHTML:">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5834936-2f5678019ceb5b71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Clfeng&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Clfeng&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/clfeng"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-flex学习总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/flex学习总结/" class="article-date">
+  <time datetime="2017-06-09T03:52:11.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      flex学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对flexbox的学习总结，<a href="https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html" target="_blank" rel="external">学习资源</a></p>
+<p>文章是对自己所学知识点的一些小结，主要是为了以后遗忘时可以回顾，若想学习，前面的学习资源的教程相当不错</p>
+<ol>
+<li>when we set display:flex for the parent container,<br>the child element will layout just like they have set<br>the prototy of float<br>HTML:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  &lt;ul&gt; </div><div class="line">   &lt;li&gt;1 Branding&lt;/li&gt; </div><div class="line">    &lt;li&gt;2 Home&lt;/li&gt; </div><div class="line">    &lt;li&gt;3 Services&lt;/li&gt; </div><div class="line">    &lt;li&gt;4 About&lt;/li&gt; </div><div class="line">    &lt;li&gt;5 Contact&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div><div class="line">`</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/5834936-2f5678019ceb5b71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ol>
+<li>the property of flex container</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>illustration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flex-drection</td>
+<td>控制flex items的排列方向，值:row &amp;clomn &amp;row-reverse &amp; clomn-reverse</td>
+</tr>
+<tr>
+<td>flex-wrap</td>
+<td>控制当flex container无法容下flex item时是否换行，值：wrap&amp;nowrap&amp;wrap-reverse</td>
+</tr>
+<tr>
+<td>flex-flow</td>
+<td>flex-direction和flex-wrap属性的缩写</td>
+</tr>
+<tr>
+<td>justify-content</td>
+<td>如同text-align控制，container中的items的排列方式，就像文字排版的首部对其，尾部对齐一般,控制items在main-axis上的排列方式值：flex-start &amp; flex-end &amp;center &amp; space-between &amp; space-around</td>
+</tr>
+<tr>
+<td>align-items</td>
+<td>控制cross-axis方向上的的首个item的位置，从而影响整体布局，值：flex-start &amp; flex-end &amp;  center&amp;space-between &amp; space-around</td>
+</tr>
+<tr>
+<td>align-content</td>
+<td>控制cross-axis方向上多个items的布局，与justify-content类似，值：flex-start &amp; flex-end &amp; center &amp; stretch &amp; baseline</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//test flex-direction</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-direction:column;</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//test flex-wrap</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-direction:column;</div><div class="line"> flex-wrap: wrap;</div><div class="line">//wrap 当container无法容下items是不会换行，浏览器会出现滚动条</div><div class="line">//nowrap 当container无法容下items时，自动换行，item依旧在container包裹的内部</div><div class="line">//wrap-reverse 在这设置了wrap的效果下将上下颠倒,reverse使得main-axis的方向从下到上</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//test justify-content</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> justify-content:flex-start;</div><div class="line">//flex-start,从main-axis的左侧排列对齐</div><div class="line">//flex-end。从main-axis的右侧排列对齐</div><div class="line">//center.居中对齐</div><div class="line">//space-between，item之间的距离大小大小相同</div><div class="line">//sapce-around。每个item占据的空间相同，空间=元素所占空间+多出的空白空间的分配</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// test align-items</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> align-items:flex-start;</div><div class="line">//flex-start,从cross-axis的左侧排列对齐</div><div class="line">//flex-end。从cross-axis的右侧排列对齐</div><div class="line">//center.cross-axis轴居中对齐</div><div class="line">//stretch，cross-axis轴,默认值，使得flex items的高度与container的高度相同</div><div class="line">//baseline。cross-axis轴，使得flex item按器基线对齐</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// test align-content</div><div class="line"></div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> height:500px;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-wrap:wrap;</div><div class="line"> align-content:flex-start;</div><div class="line"> //与前面的justify-content显示，值也是相同的，达到的效果也是相同的，</div><div class="line"> //需要理解的区别是，justify-content控制main-axis上的多个item，仅仅看一行</div><div class="line"> //align-content控制的是一列上的多个item,仅仅从一列上看，会发现其与justify-content几乎相同</div><div class="line">//相比align-items，align-items其控制的是cross-axis上第一个item的位置，跟多的是针对首个item，</div><div class="line">//而align-content更多针对的是多个item，就如同justify-content一样</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> // height: 100px;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line"> height:100px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>//3.flex item property</p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>illustration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>order</td>
+<td>当item设置了order之后，会根据order值的大小进行排列，如两个元素的order值大小相同，则元素在html中排在前的会依旧排在前面，item的某人order值为0</td>
+</tr>
+<tr>
+<td>flex-grow</td>
+<td>当container有多余空间时,如flex-grow的值为正值则item会填满多余的空间，当多个item都设置了flex-grow时，会根据比例将多余的空间分配给item</td>
+</tr>
+<tr>
+<td>flex-shrink</td>
+<td>当container的空间不足时，会缩小item的大小，多个item都设置值时，根据比例缩小。当值为0时，item则变成固定宽度，默认值为1</td>
+</tr>
+<tr>
+<td>flex-basis</td>
+<td>item的基本宽度，默认为auto</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//test order</div><div class="line">ul&#123;</div><div class="line"> display: flex;</div><div class="line"> height:500px;</div><div class="line"> border:1px solid red;</div><div class="line"> list-style:none;</div><div class="line"> flex-wrap:wrap;</div><div class="line">&#125;</div><div class="line">li&#123;</div><div class="line"> background-color: #8cacea;</div><div class="line"> margin: 8px;</div><div class="line"> padding: 4px;</div><div class="line"> height:100px;</div><div class="line">&#125; </div><div class="line"></div><div class="line">li:nth-child(1)&#123;</div><div class="line"> order:1;</div><div class="line">&#125;</div><div class="line">li:nth-child(2)&#123;</div><div class="line"> order:1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>//align-self，该属性的是是针对目标item进行设定的，不会影响到其他的item</p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>illustration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto</td>
+<td>继承container的的align-items属性</td>
+</tr>
+<tr>
+<td>flex-start</td>
+<td>开始对齐</td>
+</tr>
+<tr>
+<td>flex-end</td>
+<td>结尾对齐</td>
+</tr>
+<tr>
+<td>center</td>
+<td>居中</td>
+</tr>
+<tr>
+<td>baseline</td>
+<td>基线</td>
+</tr>
+<tr>
+<td>stretch</td>
+<td>延展，会布满整个container</td>
+</tr>
+</tbody>
+</table>
+<p>注意：但给某个item设置margin:auto的时候，<br>该项目会占据所有的多余空间,并将多余空间平均分配到该item的两侧，<br>仅仅设置margin-left则将多余的空间都分配给该item的左侧，margin-right相同<br>另外在设置了margin:auto之后。container的justify-content将不起作用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/clfeng/2017/06/09/flex学习总结/" data-id="cj3pbi0ih0001qwn48brkt0av" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/09/css定位总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">css定位总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/09/flex学习总结/">flex学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/09/css定位总结/">css定位总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/30/screenShoot/">&#39;screenShoot&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/23/从输入url到页面展现-都发生了什么/">从输入url到页面展现,都发生了什么?</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/14/http知识小结/">http知识小结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 陈梁丰<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
